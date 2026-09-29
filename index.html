@@ -1,525 +1,511 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnMate AI</title>
+<title>LearnMate AI | Your Personalized AI Learning Companion</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#f5f7ff;
-color:#172033;
-}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer}
-
-.nav{
-position:sticky;
-top:0;
-z-index:99;
-height:70px;
-background:white;
-border-bottom:1px solid #e5e7eb;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 5%;
-}
-
-.logo{
-font-size:23px;
-font-weight:900;
-color:#4f46e5;
-}
-.logo span{color:#9333ea}
-
-.links{
-display:flex;
-gap:5px;
-flex-wrap:wrap;
-}
-
-.links a{
-padding:10px 12px;
-border-radius:9px;
-font-size:14px;
-font-weight:600;
-color:#475569;
-}
-
-.links a:hover{
-background:#eef2ff;
-color:#4f46e5;
-}
-
-.page{
-min-height:calc(100vh - 70px);
-padding:60px 6%;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-}
-
-.hero{
-min-height:calc(100vh - 70px);
-display:flex;
-align-items:center;
-}
-
-.badge{
-display:inline-block;
-background:#eef2ff;
-color:#4f46e5;
-padding:8px 14px;
-border-radius:30px;
-font-size:12px;
-font-weight:800;
-letter-spacing:.5px;
-}
-
-h1{
-font-size:clamp(45px,8vw,82px);
-line-height:1;
-margin:20px 0;
-}
-
-.gradient{
-background:linear-gradient(90deg,#4f46e5,#9333ea);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.hero p{
-font-size:19px;
-line-height:1.7;
-color:#64748b;
-max-width:700px;
-}
-
-.buttons{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin-top:25px;
-}
-
-.btn{
-display:inline-block;
-padding:14px 20px;
-border-radius:11px;
-font-weight:800;
-border:0;
-}
-
-.primary{
-background:#4f46e5;
-color:white;
-}
-
-.secondary{
-background:white;
-border:1px solid #d8deea;
-color:#334155;
-}
-
-.primary:hover{
-background:#4338ca;
-}
-
-.card{
-background:white;
-border:1px solid #e5e7eb;
-border-radius:20px;
-padding:25px;
-box-shadow:0 10px 30px rgba(30,40,90,.06);
-margin-bottom:20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
-.grid2{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:18px;
-}
-
-.section-title{
-font-size:42px;
-margin:15px 0 8px;
-}
-
-.subtitle{
-color:#64748b;
-margin-bottom:30px;
-}
-
-.icon{
-font-size:32px;
-}
-
-.stat{
-padding:22px;
-background:white;
-border:1px solid #e5e7eb;
-border-radius:17px;
-}
-
-.stat small{
-color:#64748b;
-}
-
-.stat h2{
-margin:8px 0 0;
-font-size:28px;
-}
-
-input,select,textarea{
-width:100%;
-padding:13px;
-border:1px solid #d8deea;
-border-radius:10px;
-margin-top:7px;
-outline:none;
-background:white;
-}
-
-textarea{
-height:100px;
-resize:vertical;
-}
-
-.form{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-.full{
-grid-column:1/-1;
-}
-
-label{
-font-weight:700;
-font-size:14px;
-}
-
-.question{
-font-size:23px;
-font-weight:800;
-margin:20px 0;
-}
-
-.option{
-display:block;
-padding:15px;
-margin:9px 0;
-border:1px solid #dce1eb;
-border-radius:11px;
-background:white;
-}
-
-.option:hover{
-background:#eef2ff;
-border-color:#6366f1;
-}
-
-.progress{
-height:10px;
-background:#e5e7eb;
-border-radius:20px;
-overflow:hidden;
-}
-
-.progress div{
-height:100%;
-width:60%;
-background:linear-gradient(90deg,#4f46e5,#9333ea);
-}
-
-.topic{
-margin:15px 0;
-}
-
-.topichead{
-display:flex;
-justify-content:space-between;
-}
-
-.bar{
-height:9px;
-background:#e5e7eb;
-border-radius:20px;
-overflow:hidden;
-}
-
-.bar div{
-height:100%;
-background:#6366f1;
-}
-
-.roadmap{
-border-left:5px solid #6366f1;
-}
-
-.priority{
-font-size:11px;
-background:#eef2ff;
-color:#4f46e5;
-padding:5px 9px;
-border-radius:20px;
-font-weight:800;
-}
-
-.meta{
-color:#64748b;
-font-size:13px;
-margin:10px 0;
-}
-
-.why{
-background:#f8fafc;
-padding:14px;
-border-radius:10px;
-color:#475569;
-margin:14px 0;
-}
-
-.resource h3{
-margin-bottom:5px;
-}
-
-.resource p{
-color:#64748b;
-font-size:14px;
-}
-
-.chat{
-height:430px;
-display:flex;
-flex-direction:column;
-}
-
-.chatbox{
-flex:1;
-overflow:auto;
-padding:10px;
-}
-
-.message{
-padding:12px 15px;
-border-radius:14px;
-max-width:75%;
-margin:10px 0;
-font-size:14px;
-}
-
-.ai{
-background:#eef2f7;
-}
-
-.me{
-background:#4f46e5;
-color:white;
-margin-left:auto;
-}
-
-.chatinput{
-display:flex;
-gap:8px;
-border-top:1px solid #eee;
-padding-top:15px;
-}
-
-.chatinput input{
-margin:0;
-}
-
-footer{
-background:white;
-padding:35px;
-text-align:center;
-color:#64748b;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f6f7ff;color:#17182b}
+button{cursor:pointer;border:0}
+nav{height:70px;background:white;border-bottom:1px solid #e5e7f0;display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:10}
+.logo{font-size:21px;font-weight:800;color:#5b5cf0}
+.navlinks{display:flex;gap:8px}
+.navlinks button{background:white;padding:10px 13px;border-radius:9px;font-weight:600;color:#62677a}
+.navlinks button:hover{background:#eeeeff;color:#5b5cf0}
+.container{max-width:1150px;margin:auto;padding:0 20px}
+.hero{padding:90px 0;background:linear-gradient(135deg,#fafaff,#eeeeff)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.badge{color:#5b5cf0;font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:64px;line-height:1;margin:18px 0}
+h1 span{color:#5b5cf0}
+.hero p{font-size:18px;color:#70778a;line-height:1.7}
+.buttons{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{padding:13px 18px;border-radius:10px;font-weight:bold}
+.primary{background:#5b5cf0;color:white}
+.secondary{background:white;color:#555;border:1px solid #ddd}
+.card{background:white;border:1px solid #e2e4ee;border-radius:18px;padding:24px;box-shadow:0 15px 45px #20245c12}
+.score{font-size:48px;color:#5b5cf0;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}
+.feature{background:white;border:1px solid #e3e5ee;border-radius:16px;padding:24px}
+.feature h3{margin:12px 0 8px}
+.feature p{font-size:14px;color:#73798a;line-height:1.6}
+section{padding:70px 0}
+.center{text-align:center}
+h2{font-size:38px;margin:10px 0}
+.muted{color:#72788a;line-height:1.6}
+.page{padding:55px 0;min-height:75vh}
+.form{max-width:800px;margin:auto;background:white;padding:30px;border:1px solid #e1e3ed;border-radius:18px}
+.field{margin-bottom:20px}
+label{display:block;font-weight:bold;font-size:13px;margin-bottom:7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #dce0ea;border-radius:9px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 13px;border:1px solid #ddd;background:white;border-radius:20px}
+.chip.selected{background:#eeeeff;color:#5b5cf0;border-color:#999cff}
+.questions{max-width:850px;margin:auto}
+.qcard{background:white;border:1px solid #e1e3ed;border-radius:18px;padding:30px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:25px}
+.answer{padding:15px;background:white;border:1px solid #dce0ea;border-radius:10px;text-align:left;font-weight:bold}
+.answer.selected{background:#eeeeff;border-color:#777aff;color:#5b5cf0}
+.progress{height:8px;background:#e5e6ee;border-radius:20px;margin:25px 0;overflow:hidden}
+.progress div{height:100%;background:#5b5cf0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:white;border:1px solid #e1e3ed;border-radius:15px;padding:20px}
+.stat small{color:#818799}
+.stat strong{display:block;font-size:25px;margin:8px 0;color:#5b5cf0}
+.panel{background:white;border:1px solid #e1e3ed;border-radius:16px;padding:24px;margin-top:15px}
+.topic{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:18px 0}
+.high{color:#d64e5c}.medium{color:#d18b18}.low{color:#15945e}
+.resource{background:white;border:1px solid #e1e3ed;border-radius:15px;padding:22px}
+.resource h3{margin:10px 0}
+.resource li{margin:8px 0;color:#687083;font-size:14px}
+.chat{max-width:850px;margin:auto;background:white;border:1px solid #e1e3ed;border-radius:18px;min-height:500px;padding:20px}
+.messages{height:350px;overflow:auto;padding:10px}
+.msg{padding:12px 15px;background:#eef0f7;border-radius:12px;margin:8px 0;max-width:75%;font-size:14px;line-height:1.5}
+.user{margin-left:auto;background:#5b5cf0;color:white}
+.chatbox{display:flex;gap:8px}
+.chatbox input{flex:1}
+footer{text-align:center;padding:25px;background:white;color:#858a99;font-size:12px}
 
 @media(max-width:800px){
-.links{
-gap:0;
-overflow-x:auto;
-max-width:70%;
-}
-.links a{
-font-size:11px;
-padding:8px;
-}
-.grid,.grid2,.form{
-grid-template-columns:1fr;
-}
-.full{
-grid-column:auto;
-}
-.page{
-padding:40px 5%;
-}
+.hero-grid{grid-template-columns:1fr}
+h1{font-size:45px}
+.grid{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr}
+.answers{grid-template-columns:1fr}
+.navlinks{display:none}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<nav class="nav">
-
-<a href="#home" class="logo">
-LearnMate <span>AI</span>
-</a>
-
-<div class="links">
-<a href="#home">Home</a>
-<a href="#dashboard">Dashboard</a>
-<a href="#profile">Profile</a>
-<a href="#assessment">Assessment</a>
-<a href="#results">Results</a>
-<a href="#learning">Learning Path</a>
-<a href="#resources">Resources</a>
-<a href="#assistant">AI Assistant</a>
+<nav>
+<div class="logo">🤖 LearnMate AI</div>
+<div class="navlinks">
+<button onclick="home()">Home</button>
+<button onclick="profile()">Profile</button>
+<button onclick="assessment()">Assessment</button>
+<button onclick="dashboard()">Dashboard</button>
+<button onclick="roadmap()">Learning Path</button>
+<button onclick="resources()">Resources</button>
+<button onclick="assistant()">AI Assistant</button>
 </div>
-
 </nav>
 
+<div id="app"></div>
 
-<!-- HOME -->
-<section id="home" class="page">
+<footer>
+🤖 <b>LearnMate AI</b> — Your Personalized AI Learning Companion
+</footer>
 
-<div class="container hero">
+<script>
 
+const questions=[
+["Python Basics","Which keyword defines a function in Python?",["function","def","define","func"],"def"],
+["Variables","Which symbol is used for assignment?",["==","=",":=","=>"],"="],
+["Conditions","Which statement makes a decision?",["if","repeat","switch","choose"],"if"],
+["Loops","Which loop is commonly used with a list?",["for","repeat","switch","iterate"],"for"],
+["Loops","What does range(5) produce?",["1-5","0-4","0-5","5"],"0-4"],
+["Functions","Which keyword returns a value?",["send","return","output","give"],"return"],
+["Lists","Which brackets create a list?",["()","{}","[]","<>"],"[]"],
+["Python Basics","Which function displays output?",["display()","show()","print()","output()"],"print()"],
+["Conditions","Which operator checks equality?",["=","==","!=","==="],"=="],
+["Functions","How many times can a function be called?",["Once","Twice","Any number of times","Never"],"Any number of times"]
+];
+
+let user=JSON.parse(localStorage.getItem("learnmateUser")||"null");
+let result=JSON.parse(localStorage.getItem("learnmateResult")||"null");
+let answers=[];
+let q=0;
+
+function save(){
+localStorage.setItem("learnmateUser",JSON.stringify(user));
+localStorage.setItem("learnmateResult",JSON.stringify(result));
+}
+
+function home(){
+document.getElementById("app").innerHTML=`
+<section class="hero">
+<div class="container hero-grid">
 <div>
-
-<span class="badge">✦ AI-POWERED PERSONALIZED LEARNING</span>
-
-<h1>
-Learn smarter.<br>
-<span class="gradient">Learn your way.</span>
-</h1>
-
-<p>
-LearnMate AI understands your current skills, identifies
-your knowledge gaps and creates a personalized learning
-journey designed around your goals.
-</p>
-
+<div class="badge">✦ AI-POWERED ADAPTIVE LEARNING</div>
+<h1>Learn smarter.<br><span>Learn your way.</span></h1>
+<p>LearnMate AI analyzes your performance, identifies skill gaps and creates a personalized learning path based on your current level and goals.</p>
 <div class="buttons">
-
-<a class="btn primary" href="#profile">
-Start My Learning Journey →
-</a>
-
-<a class="btn secondary" href="#dashboard">
-Explore Dashboard
-</a>
-
+<button class="btn primary" onclick="profile()">Start Learning →</button>
+<button class="btn secondary" onclick="demo()">▶ Explore Demo</button>
+</div>
 </div>
 
+<div class="card">
+<div class="badge">PERSONALIZED DASHBOARD</div>
+<h2>Alex 👋</h2>
+<p>Assessment Score</p>
+<div class="score">62%</div>
+<hr><br>
+<p><b>Primary Skill Gap:</b> Functions</p>
+<p><b>Performance:</b> 25%</p>
+<p><b>Priority:</b> High</p>
 </div>
-
 </div>
-
 </section>
 
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="page">
-
-<div class="container">
-
-<span class="badge">AI LEARNING DASHBOARD</span>
-
-<h2 class="section-title">
-Your learning <span class="gradient">command center.</span>
-</h2>
-
-<p class="subtitle">
-A complete overview of your personalized learning journey.
-</p>
+<section>
+<div class="container center">
+<div class="badge">ONE JOURNEY. BUILT FOR YOU.</div>
+<h2>Turn performance into a learning strategy.</h2>
+<p class="muted">Instead of giving every student the same path, LearnMate AI uses assessment evidence to decide what comes next.</p>
 
 <div class="grid">
+<div class="feature"><h3>🧠 AI Performance Analysis</h3><p>Understand strengths and weaknesses topic by topic.</p></div>
+<div class="feature"><h3>🎯 Skill Gap Detection</h3><p>Automatically identify areas requiring attention.</p></div>
+<div class="feature"><h3>💡 Smart Recommendations</h3><p>Receive learning resources matched to your level.</p></div>
+<div class="feature"><h3>↗ Adaptive Difficulty</h3><p>Difficulty changes according to performance.</p></div>
+<div class="feature"><h3>🧭 Personalized Roadmap</h3><p>Follow a clear learning sequence.</p></div>
+<div class="feature"><h3>📊 Progress Tracking</h3><p>Track completed topics and learning progress.</p></div>
+</div>
+</div>
+</section>`;
+}
 
-<div class="stat">
-<small>Assessment Score</small>
-<h2 id="scoreDash">62%</h2>
+function profile(){
+document.getElementById("app").innerHTML=`
+<section class="page">
+<div class="container">
+<div class="form">
+<div class="badge">STEP 1 OF 3</div>
+<h2>Create Your Learning Profile</h2>
+<p class="muted">Tell us about yourself so LearnMate can personalize your journey.</p><br>
+
+<div class="field">
+<label>Full Name</label>
+<input id="name" placeholder="Enter your name">
 </div>
 
-<div class="stat">
-<small>Primary Skill Gap</small>
-<h2 id="gapDash">Functions</h2>
+<div class="field">
+<label>Branch</label>
+<select id="branch">
+<option>CSE</option>
+<option>CSE - AIML</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>Mechanical</option>
+<option>Civil</option>
+</select>
 </div>
 
-<div class="stat">
-<small>Learning Level</small>
-<h2 id="levelDash">Intermediate</h2>
+<div class="field">
+<label>Year</label>
+<select id="year">
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
 </div>
 
+<div class="field">
+<label>Areas of Interest</label>
+<div class="chips">
+${["Python","AI/ML","Web Development","C Programming","Data Structures","Cybersecurity"].map(x=>`<button class="chip" onclick="this.classList.toggle('selected')">${x}</button>`).join("")}
+</div>
 </div>
 
-<br>
+<div class="field">
+<label>Learning Goal</label>
+<textarea id="goal" rows="4" placeholder="Example: I want to build real-world AI applications."></textarea>
+</div>
 
-<div class="card">
+<button class="btn primary" onclick="startAssessment()">Continue to Assessment →</button>
+</div>
+</div>
+</section>`;
+}
 
-<h3>🧠 AI Performance Analysis</h3>
+function startAssessment(){
+let interests=[...document.querySelectorAll(".selected")].map(x=>x.innerText);
+user={
+name:document.getElementById("name").value||"Student",
+branch:document.getElementById("branch").value,
+year:document.getElementById("year").value,
+interests:interests,
+goal:document.getElementById("goal").value||"Improve my programming skills"
+};
+answers=[];
+q=0;
+save();
+assessment();
+}
 
-<p>
-LearnMate AI analyzes your assessment performance and
-prioritizes the topics where improvement can create the
-greatest learning impact.
-</p>
+function assessment(){
+if(!user){profile();return}
 
-<div class="why">
-<strong>Current Recommendation:</strong><br>
-Strengthen Python Functions first, then practice Loops
-and Lists before moving toward advanced AI/ML programming.
+let item=questions[q];
+
+document.getElementById("app").innerHTML=`
+<section class="page">
+<div class="questions">
+<div class="badge">STEP 2 OF 3 • SKILL ASSESSMENT</div>
+<h2>Let's understand your current level.</h2>
+<p class="muted">Question ${q+1} of 10</p>
+
+<div class="progress"><div style="width:${(q+1)*10}%"></div></div>
+
+<div class="qcard">
+<div class="badge">${item[0]}</div>
+<h2>${item[1]}</h2>
+
+<div class="answers">
+${item[2].map((x,i)=>`
+<button class="answer ${answers[q]===x?"selected":""}" onclick="choose('${x.replace(/'/g,"\\'")}')">
+${String.fromCharCode(65+i)}. ${x}
+</button>`).join("")}
 </div>
 
 <div class="buttons">
-<a class="btn primary" href="#assessment">Take Assessment</a>
-<a class="btn secondary" href="#learning">View Learning Path</a>
+${q>0?`<button class="btn secondary" onclick="q--;assessment()">← Previous</button>`:""}
+${q<9?`<button class="btn primary" onclick="nextQuestion()">Next →</button>`:`<button class="btn primary" onclick="finish()">✦ Submit & Analyze</button>`}
 </div>
-
 </div>
-
 </div>
+</section>`;
+}
 
-</section>
+function choose(x){
+answers[q]=x;
+assessment();
+}
 
+function nextQuestion(){
+if(!answers[q]){
+alert("Please select an answer.");
+return;
+}
+q++;
+assessment();
+}
 
-<!-- PROFILE -->
-<section id="profile" class="page">
+function finish(){
+if(answers.length<10){
+alert("Please answer all 10 questions.");
+return;
+}
 
+let correct=0;
+let topics={};
+
+questions.forEach((x,i)=>{
+if(!topics[x[0]])topics[x[0]]={correct:0,total:0};
+topics[x[0]].total++;
+if(answers[i]===x[3]){
+correct++;
+topics[x[0]].correct++;
+}
+});
+
+let scores={};
+
+Object.keys(topics).forEach(t=>{
+scores[t]=Math.round(topics[t].correct/topics[t].total*100);
+});
+
+result={
+score:correct*10,
+correct:correct,
+topics:scores
+};
+
+save();
+dashboard();
+}
+
+function demo(){
+user={
+name:"Alex",
+branch:"CSE - AIML",
+year:"1st Year",
+interests:["Python","AI/ML"],
+goal:"Build AI applications"
+};
+
+result={
+score:62,
+correct:6,
+topics:{
+"Python Basics":80,
+"Variables":90,
+"Conditions":70,
+"Loops":45,
+"Functions":25,
+"Lists":60
+}
+};
+
+save();
+dashboard();
+}
+
+function dashboard(){
+if(!user||!result){
+home();
+return;
+}
+
+let entries=Object.entries(result.topics);
+let weak=entries.sort((a,b)=>a[1]-b[1])[0];
+let strong=[...entries].sort((a,b)=>b[1]-a[1])[0];
+
+document.getElementById("app").innerHTML=`
+<section class="page">
 <div class="container">
 
-<span class="badge">STEP 1 • PROFILE</span>
+<div class="badge">PERSONALIZED DASHBOARD</div>
+<h2>Hello, ${user.name} 👋</h2>
+<p class="muted">${user.branch} • ${user.year} • ${user.goal}</p>
 
-<h2 class="section-title">
-Tell us about <span class="gradient">yourself.</span>
-</h2>
+<div class="stats">
+<div class="stat"><small>Assessment Score</small><strong>${result.score}%</strong><small>${result.correct}/10 correct</small></div>
+<div class="stat"><small>Primary Skill Gap</small><strong>${weak[0]}</strong><small>${weak[1]}% • High priority</small></div>
+<div class="stat"><small>Strongest Area</small><strong>${strong[0]}</strong><small>${strong[1]}%</small></div>
+<div class="stat"><small>Learning Progress</small><strong>0%</strong><small>0 topics completed</small></div>
+</div>
 
-<p class="subtitle">
-LearnMate uses this information to personalize your learning experience.
-</p>
+<div class="panel">
+<h2>Performance Intelligence</h2>
+<p class="muted">Your topic-wise assessment performance.</p>
 
-<div class="card">
+${entries.map(x=>`
+<div class="topic">
+<div><b>${x[0]}</b><br><small>${x[1]}%</small></div>
+<div class="${x[1]<40?"high":x[1]<70?"medium":"low"}">
+<b>${x[1]<40?"High":x[1]<70?"Medium":"Low"} Priority</b>
+</div>
+</div>`).join("")}
+</div>
 
-<div class="form">
+<div class="panel">
+<h2>🎯 Recommended Next Step</h2>
+<p class="muted">Based on your assessment, focus on:</p>
+<h2>${weak[0]}</h2>
+<p>Start with ${weak[1]<40?"Beginner":weak[1]<70?"Intermediate":"Advanced"} concepts and practice progressively.</p>
+<br>
+<button class="btn primary" onclick="roadmap()">Open Personalized Roadmap →</button>
+</div>
 
-<div>
-<label>Full Name</label>
-<input id="name" placeholder="
+</div>
+</section>`;
+}
+
+function roadmap(){
+if(!result){dashboard();return}
+
+let topics=Object.entries(result.topics).sort((a,b)=>a[1]-b[1]);
+
+document.getElementById("app").innerHTML=`
+<section class="page">
+<div class="container">
+<div class="badge">STEP 3 OF 3 • ADAPTIVE ROADMAP</div>
+<h2>Your Personalized Learning Path</h2>
+<p class="muted">Your roadmap starts with the largest skill gaps.</p>
+
+${topics.map((x,i)=>`
+<div class="panel">
+<h2>${i+1}. ${x[0]}</h2>
+<p>Starting score: <b>${x[1]}%</b></p>
+<p>Difficulty: <b>${x[1]<40?"Beginner":x[1]<70?"Intermediate":"Advanced"}</b></p>
+<p>Priority: <b class="${x[1]<40?"high":x[1]<70?"medium":"low"}">${x[1]<40?"High":x[1]<70?"Medium":"Low"}</b></p>
+<p>Objective: Strengthen ${x[0]} through concepts, examples and practice.</p>
+<br>
+<button class="btn secondary" onclick="this.innerText='✓ Completed'">Mark as Completed</button>
+</div>`).join("")}
+
+</div>
+</section>`;
+}
+
+function resources(){
+if(!result){dashboard();return}
+
+let topics=Object.keys(result.topics);
+
+document.getElementById("app").innerHTML=`
+<section class="page">
+<div class="container">
+<div class="badge">SMART RESOURCES</div>
+<h2>Recommended Learning Resources</h2>
+<p class="muted">Resources are matched to your assessment performance.</p>
+
+<div class="grid">
+${topics.map(t=>`
+<div class="resource">
+<h3>${t}</h3>
+<ul>
+<li>Learn ${t} fundamentals</li>
+<li>Study examples and explanations</li>
+<li>Practice 10 problems</li>
+<li>Complete a mini challenge</li>
+</ul>
+</div>`).join("")}
+</div>
+</div>
+</section>`;
+}
+
+function assistant(){
+document.getElementById("app").innerHTML=`
+<section class="page">
+<div class="container">
+<div class="chat">
+<h2>🤖 LearnMate AI Assistant</h2>
+<p class="muted">Ask for personalized learning guidance.</p>
+
+<div id="messages" class="messages">
+<div class="msg">Hi! I'm LearnMate Assistant. Ask me what you should learn next.</div>
+</div>
+
+<div class="chatbox">
+<input id="chatInput" placeholder="Ask something...">
+<button class="btn primary" onclick="sendMessage()">Send</button>
+</div>
+</div>
+</div>
+</section>`;
+}
+
+function sendMessage(){
+let input=document.getElementById("chatInput");
+let text=input.value.trim();
+
+if(!text)return;
+
+let box=document.getElementById("messages");
+
+box.innerHTML+=`<div class="msg user">${text}</div>`;
+
+let reply="Complete your assessment and focus on your weakest topic first.";
+
+if(text.toLowerCase().includes("next")){
+if(result){
+let w=Object.entries(result.topics).sort((a,b)=>a[1]-b[1])[0];
+reply=`Your next recommended focus is ${w[0]} with a score of ${w[1]}%. Start with fundamentals and practice progressively.`;
+}
+}
+
+if(text.toLowerCase().includes("loop"))
+reply="For Python loops, learn for loops, while loops, range(), list iteration and nested loops.";
+
+if(text.toLowerCase().includes("function"))
+reply="For Python functions, learn def, parameters, arguments and return values. Then build small programs.";
+
+box.innerHTML+=`<div class="msg">${reply}</div>`;
+input.value="";
+}
+
+home();
+
+</script>
+
+</body>
+</html>
